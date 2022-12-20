@@ -4,3 +4,7 @@ $ mvn sonar:sonar \
     
     
     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
+    
+    
+    Jenkins-sonarqube
+    1118fdd6a5440d8a2524ba2038ef950e5b
