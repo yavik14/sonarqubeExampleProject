@@ -8,3 +8,6 @@ $ mvn sonar:sonar \
     
     Jenkins-sonarqube
     1118fdd6a5440d8a2524ba2038ef950e5b
+    
+    
+    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
