@@ -15,22 +15,19 @@ pipeline {
                 sh 'mvn test-compile'
             }
         }
-        stage('Ejecución de pruebas unitarias') {
+        stage('Pruebas') {
             steps {
                 sh 'mvn test'
             }
-        }
-        stage('Lanzar el analisis de Sonarqube') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar'fgr
-                }
-            }
-        }
-        stage("Esperar la respuesta del Sonarqube") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
+            post{
+                always {
+                    sh 'mvn jacoco:report'
+                    withSonarQubeEnv('sonarqube') {
+                        sh 'mvn sonar:sonar'
+                    }
+                    timeout(time: 1, unit: 'HOURS') {
+                        waitForQualityGate abortPipeline: true
+                    }
                 }
             }
         }
